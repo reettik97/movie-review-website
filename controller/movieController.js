@@ -3,6 +3,7 @@ var path = require("path");
 var fs = require("fs");
 
 
+
 //require the database models
 var Movie = require("../models/movie");
 var Comment = require("../models/comment");
@@ -25,11 +26,15 @@ function renderAddForm(req, res, next) {
 
 function renderEditForm(req, res, next) {
   // send the data to the edit page
- let movieId = req.params.id;
-  Movie.findById(movieId , (err , movie)=>{
-    if(err){next(err);}
-    res.render("editMovie", { movie });
-  }) 
+  let movieId = req.params.id;
+  Movie.findById(movieId, (err, movie) => {
+    if (err) {
+      next(err);
+    }
+    res.render("editMovie", {
+      movie
+    });
+  })
 }
 
 
@@ -48,21 +53,27 @@ function addIntoTheDatabase(req, res, next) {
 }
 
 // edit the movie into the database
-function editTheMovie(req ,res){
+function editTheMovie(req, res) {
   let movieId = req.params.id;
   let imgPath = "/images/uploads/" + req.file.originalname; //add the img path
   req.body.imgSrc = imgPath;
-  Movie.findById(movieId , (err , movie)=>{
-    if(err){return console.log(err);}
-    let deleteImagePath = path.join(__dirname , "../public" + movie.imgSrc);
-    fs.unlink(deleteImagePath , (err)=>{
-     if(err) {return console.log(err);}
+  Movie.findById(movieId, (err, movie) => {
+    if (err) {
+      return console.log(err);
+    }
+    let deleteImagePath = path.join(__dirname, "../public" + movie.imgSrc);
+    fs.unlink(deleteImagePath, (err) => {
+      if (err) {
+        return console.log(err);
+      }
       console.log('old movie poster deleted');
-      Movie.findByIdAndUpdate(movieId , req.body , (err , editedMovie)=>{
-        if(err){return console.log(err);}
+      Movie.findByIdAndUpdate(movieId, req.body, (err, editedMovie) => {
+        if (err) {
+          return console.log(err);
+        }
         res.send('edit done');
       })
-    }) 
+    })
   })
 }
 
@@ -89,18 +100,29 @@ function deleteFromTheDatabase(req, res) {
     if (err) {
       return console.log(err);
     }
+    //delete the movie comments into the database 
+    Comment.deleteMany({
+      movieId: movie.id
+    }, (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log("commnet deleted successfully");
+    })
     //delele the public/image/imgName into the folder 
-  let deleteImagePath = path.join(__dirname , "../public" + movie.imgSrc);
-  fs.unlink(deleteImagePath , (err)=>{
-   if(err) {return console.log(err);}
-    console.log('movie deleted succesfully');
-  })
+    let deleteImagePath = path.join(__dirname, "../public" + movie.imgSrc);
+    fs.unlink(deleteImagePath, (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      console.log('movie deleted succesfully');
+    })
     // console.log(movie);
     res.redirect("/");
   })
   return;
 }
- 
+
 
 // add comments in the movie
 function addComment(req, res) {
