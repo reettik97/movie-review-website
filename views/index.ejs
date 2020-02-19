@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+
+      <a href="/users/login">login</a>
+      <a href="/users/register">register</a>
+      
+    </header>
+     
+    <main>
+    <a href="/movie/new">add new movies</a>
+     <% movies.forEach((movie)=> { %>
+        <%= movie %>      
+         <a href="/movie/<%=movie.id%>">view</a>
+         <a href="/movie/<%=movie.id%>/edit">edit</a>
+        <a href="/movie/<%=movie.id%>/delete">delete</a>
+          <hr>
+     <% }) %>
+    </main>
+    <footer>
+
+    </footer>
+      
+  </body>
+</html> 

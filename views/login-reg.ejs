@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/stylesheets/reg-login.css">
+  <title>Login/signin Form</title>
+</head>
+
+<body>
+
+  <div class="form_container">
+    <div class="button_container">
+      <div id="btn"></div>
+      <button type="button" class="toggle-btn" onclick="login()">Login</button>
+      <button type="button" class="toggle-btn" onclick="register()">Regester</button>
+    </div>
+    <div class="social-icons">
+      <img src="/images/icons/GitHub-Mark.png" alt="">
+      <!-- if we want add  more the social link -->
+    </div>
+
+    
+    <!-- login action add -->
+
+    <form id="login" class="input-group" action="/users/login" method="POST">
+      <input class="input-field" type="email" name="email" placeholder="email" required>
+      <input class="input-field" type="text" name="password" placeholder="Enter Password" required>
+      <input type="checkbox" class="check-box"><span>Remember Password</span>
+      <button class="submit-btn" type="submit">log in</button>
+    </form>
+
+
+    <!-- register action add -->
+
+    
+    <form id="register" class="input-group" action="/users/register" method="POST">
+      <input class="input-field" type="text" name="name" placeholder="name" required>
+      <input class="input-field" type="email" name="email" placeholder="Email " required>
+      <input class="input-field" type="text" name="password" placeholder="Enter Password" required>
+      <input type="checkbox" class="check-box"><span>agree terms and condition</span>
+      <button class="submit-btn" type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+
+     function register(){
+       x.style.left = "-400px";
+       y.style.left = '50px';
+       z.style.left = '110px';
+     }
+     function login(){
+       x.style.left = "50px";
+       y.style.left = '450px';
+       z.style.left = '0px';
+     }
+  </script>
+
+</body>
+
+</html>
