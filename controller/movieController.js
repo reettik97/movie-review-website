@@ -52,21 +52,18 @@ function editTheMovie(req ,res){
   let movieId = req.params.id;
   let imgPath = "/images/uploads/" + req.file.originalname; //add the img path
   req.body.imgSrc = imgPath;
-
-  //====================================================== 
   Movie.findById(movieId , (err , movie)=>{
-   
     if(err){return console.log(err);}
     let deleteImagePath = path.join(__dirname , "../public" + movie.imgSrc);
     fs.unlink(deleteImagePath , (err)=>{
      if(err) {return console.log(err);}
       console.log('old movie poster deleted');
-    })
-
+      Movie.findByIdAndUpdate(movieId , req.body , (err , editedMovie)=>{
+        if(err){return console.log(err);}
+        res.send('edit done');
+      })
+    }) 
   })
-  //======================================================
-  
-  Movie.findByIdAndUpdate(movieId , req.body , )
 }
 
 
