@@ -16,6 +16,6 @@
      ref: "Comment"
    }] 
  })
- var Movie = mongoose.model("movie" , movieSchema);
-
+ var Movie = mongoose.model("Movie" , movieSchema);
+ 
  module.exports = Movie;

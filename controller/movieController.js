@@ -24,6 +24,7 @@ function renderAddForm(req, res, next) {
   res.render("addMovie");
 }
 
+
 function renderEditForm(req, res, next) {
   // send the data to the edit page
   let movieId = req.params.id;
@@ -48,8 +49,10 @@ function addIntoTheDatabase(req, res, next) {
       return console.log(err)
     }
     console.log(data);
+    res.redirect("/");
   })
-  res.json(movieObj);
+ 
+  //   //chenge
 }
 
 // edit the movie into the database

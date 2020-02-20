@@ -10,7 +10,6 @@ router.get("/register" , controller.renderLoginForm);
 
 
 // handel the login and register post routes
-
 router.post("/login" , controller.checkLoginValidation)
 router.post("/register" , controller.addUserIntoTheDatabase )
 

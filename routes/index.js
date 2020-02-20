@@ -8,7 +8,9 @@ var upload = multer({
 
 
 var movieController = require("../controller/movieController")
-//===================================================
+
+
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "../public/images/uploads"))
@@ -20,23 +22,26 @@ var storage = multer.diskStorage({
     cb(null, file.originalname)
   }
 })
-
 var upload = multer({
   storage: storage
 })
 
-//======================================================
+
 
 router.get('/', movieController.viewIndex);
-router.get('/movie/new', movieController.renderAddForm)
-router.get('/movie/:id/edit', movieController.renderEditForm) //edit form
 
+
+
+// login restrict
+// =>
+router.get('/movie/new', movieController.renderAddForm) 
+router.get('/movie/:id/edit', movieController.renderEditForm) //edit form
 
 //database implements  => basic crud implemantation
 router.post("/movie/add", upload.single("imgSrc"), movieController.addIntoTheDatabase);
-router.post("/movie/:id/edit" , upload.single("imgSrc") , movieController.editTheMovie);
-
+router.post("/movie/:id/edit", upload.single("imgSrc"), movieController.editTheMovie);
 router.get("/movie/:id/", movieController.renderViewMovie);
+
 router.get("/movie/:id/delete", movieController.deleteFromTheDatabase);
 
 

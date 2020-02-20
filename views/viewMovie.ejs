@@ -7,13 +7,14 @@
 </head>
 <body>
   <header>
+    <a href="/">HOME</a>
     <a href="/users/login">login</a>
     <a href="/users/register">register</a>
   </header>
  <main>
 
     <h1>Detail movie view</h1>
-          
+    <!--movie avalable  -->
     <%= movie %>
     
     <form action="/movie/<%=movie.id%>/comment" method="POST">
