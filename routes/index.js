@@ -8,7 +8,7 @@ var upload = multer({
 
 
 var movieController = require("../controller/movieController")
-
+var auth = require("../middleware/auth");
 
 
 var storage = multer.diskStorage({
@@ -34,20 +34,20 @@ router.get('/', movieController.viewIndex);
 
 // login restrict
 // =>
-router.get('/movie/new', movieController.renderAddForm) 
-router.get('/movie/:id/edit', movieController.renderEditForm) //edit form
+router.get('/movie/new', auth.checkLoginUser ,  movieController.renderAddForm) 
+router.get('/movie/:id/edit', auth.checkLoginUser ,movieController.renderEditForm) //edit form
 
 //database implements  => basic crud implemantation
-router.post("/movie/add", upload.single("imgSrc"), movieController.addIntoTheDatabase);
-router.post("/movie/:id/edit", upload.single("imgSrc"), movieController.editTheMovie);
+router.post("/movie/add", upload.single("imgSrc"), auth.checkLoginUser, movieController.addIntoTheDatabase);
+router.post("/movie/:id/edit", upload.single("imgSrc"), auth.checkLoginUser ,movieController.editTheMovie);
 router.get("/movie/:id/", movieController.renderViewMovie);
 
-router.get("/movie/:id/delete", movieController.deleteFromTheDatabase);
+router.get("/movie/:id/delete", auth.checkLoginUser ,movieController.deleteFromTheDatabase);
 
 
 
 //comment operation
-router.post("/movie/:id/comment", movieController.addComment)
+router.post("/movie/:id/comment", auth.checkLoginUser ,movieController.addComment)
 
 
 module.exports = router;

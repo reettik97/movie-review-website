@@ -9,7 +9,7 @@
       <a href="/">HOME</a>
       <a href="/users/login">login</a>
       <a href="/users/register">register</a>
-      
+      <a href="/users/logout">logout</a>
     </header>
      
     <main>
@@ -24,6 +24,12 @@
     </main>
     <footer>
 
+      <%  if(userDetail){ %>
+        <%= userDetail.name %>
+        <% }else{ %>
+         <p>logout user</p>
+     <% } %>
+     
     </footer>
       
   </body>

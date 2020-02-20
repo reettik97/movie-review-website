@@ -12,6 +12,8 @@ router.get("/register" , controller.renderLoginForm);
 // handel the login and register post routes
 router.post("/login" , controller.checkLoginValidation)
 router.post("/register" , controller.addUserIntoTheDatabase )
+router.get("/logout" , controller.logout);
+
 
 
 module.exports = router;

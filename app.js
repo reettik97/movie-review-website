@@ -5,8 +5,17 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
+// required sesssions
+var session = require("express-session");
+var Mongostore = require("connect-mongo")(session);
+
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+
+// authentication middleware require
+var auth = require("./middleware/auth");
+ 
 
 //database conneection
 mongoose.connect(
@@ -33,6 +42,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+//session routes
+app.use(session({
+  secret : "reettikGoswami",
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure : true},
+  store: new Mongostore({ mongooseConnection : mongoose.connection })
+}));
+
+app.use(auth.storeSessionData); 
 
 // main router 
 app.use("/", indexRouter);

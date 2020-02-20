@@ -15,13 +15,14 @@ function viewIndex(req, res, next) {
       return console.log(err)
     }
     res.render('index', {
-      movies
+      movies ,
+      userDetail: req.userDetail 
     });
   })
 }
 
 function renderAddForm(req, res, next) {
-  res.render("addMovie");
+  res.render("addMovie" , { userDetail : req.userDetail});
 }
 
 
@@ -33,7 +34,8 @@ function renderEditForm(req, res, next) {
       next(err);
     }
     res.render("editMovie", {
-      movie
+      movie ,
+      userDetail : req.userDetail
     });
   })
 }
@@ -74,7 +76,7 @@ function editTheMovie(req, res) {
         if (err) {
           return console.log(err);
         }
-        res.send('edit done');
+        res.redirect('/');
       })
     })
   })
@@ -90,7 +92,8 @@ function renderViewMovie(req, res) {
       return console.log(err);
     }
     res.render("viewMovie", {
-      movie
+      movie ,
+      userDetail : req.session.userDetail
     });
   })
 }

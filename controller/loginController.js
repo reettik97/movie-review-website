@@ -49,7 +49,8 @@ function checkLoginValidation(req, res) {
         return console.log(err)
       }
       if (response) {
-        res.send("login successfully");
+        req.session.userId = user.id;
+        res.redirect("/");
       } else {
         res.send("wrong password");
       }
@@ -57,11 +58,22 @@ function checkLoginValidation(req, res) {
   })
 }
 
+function logout(req , res , next){
+  if(req.session && req.session.userId){
+     req.session.destroy()
+  }
+     res.redirect('/');
+}
+
+// exports.logout = (req, res, next) => {
+
+// }
 
 
 
 module.exports = {
   renderLoginForm,
   addUserIntoTheDatabase,
-  checkLoginValidation
+  checkLoginValidation,
+  logout
 }

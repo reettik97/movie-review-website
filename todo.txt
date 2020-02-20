@@ -17,3 +17,5 @@ without login user{
   2.  detail movie page  
 }
 
+task :
+login and registration redirect 
