@@ -7,14 +7,16 @@ function storeSessionData(req, res, next) {
       if (err) {
         return console.log(err);
       }
+      console.log(userDetail);
       req.userDetail = userDetail;
       res.locals.userDetail = userDetail;
+      next();
     })
   } else {
     req.userDetail = null;
     res.locals.userDetail = null;
+    next();
   }
-  next();
 }
 
 
