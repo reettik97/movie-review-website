@@ -1,0 +1,343 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,500i,700&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* start code */
+
+/* general classes */
+*,
+* ::after,
+*::before{
+  box-sizing: border-box;
+}
+ .flex{
+   display: flex;
+ }
+
+body{
+  font-size: 0.875rem;
+  color: rgb(51, 62, 72);
+  font-family: "Helvetica Neue", Roboto, "Droid Sans", sans-serif ;
+  font-weight: 300;
+  line-height: 1;
+}
+
+
+/* header */
+.header_container{
+    height: 60px;
+    width: 100%;
+    background-color: rgb(40, 113, 177);;
+}
+.header{
+   width: 1277px;
+   margin: 0 auto;
+   height: 60px;
+   padding: 0px 80px 0px 80px;
+   /* background-color: yellow; */
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: aliceblue;
+  /* height: 110px; */
+  width: 60px;
+  margin-right: 24px;
+}
+
+.search-box-container{  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 350px;
+  height: 60px;
+}
+
+.search-box{
+  width: 100%;
+  height: 40px;
+  padding: 0px 16px 0px 16px;
+  display: flex;
+  align-items: center;
+  vertical-align: baseline;
+  background-color: rgb(22, 75, 122);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.search-input{
+  line-height: 30px;
+  color: white;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 290px;
+  height: 30px;
+  padding: 1px 0px 2px 0px;
+  font-size: 14px;
+  padding-left: 10px ;
+}
+input::placeholder{
+  color: white;
+  /* padding-left: 14px; */
+  text-transform: capitalize;
+  font-weight: 300;
+}
+svg{
+  height: 18px;
+  width: 18px;
+  color: white;
+}
+path {
+  stroke: white;
+}
+ .nav_container{
+   display: flex;
+   align-items: center;
+   width: 450.35px;
+   margin-left: 356px ;
+   justify-content: space-between;
+ }
+
+.nav_link{
+  padding: 6px 0px;
+  color: white;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  outline: none;
+  font-size: 15px;
+  border: none;
+  text-decoration: none;
+}
+.underline{
+  border-bottom: 2px solid white;
+}
+
+/* main section */
+
+.main_container{
+  display: flex;
+  justify-content: space-evenly;
+  width: 1100px;
+  margin: 0 auto;
+  /* background-color: chartreuse; */
+  margin-top: 48px;
+}
+
+.movie_poster_container{
+  width: 300px;
+}
+.movie_poster{
+  width: 100%;
+}
+.movie_info_container{
+  width: 740px;
+  color: rgb(42, 44, 50);
+  /* height: 40px; */
+  /* background-color: brown; */
+}
+.content_heading{
+  padding: 10px 15px 10px 25px;
+  margin: 4px 0px 6px 0px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 26px;
+  font-size: 22px;
+  font-family: Roboto;
+}
+.movie_basic_info{
+    padding: 15px;
+}
+
+
+.storyline{
+  line-height: 1.2rem;
+  font-family: 'Libre Franklin';
+  font-size: 16px;
+}
+.Additional_info{
+  /* display: table; */
+  margin: 15px 0px 15px;
+  /* background-color: brown; */
+}
+.key_heading{
+  width: 23%;
+  text-align: right;
+  padding: 0px 10px;
+  color: rgb(42, 44, 50);
+  font-size: 16px;
+  /* background-color: aqua; */
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.key_info{
+  width: 77%;
+  padding: 0 10px;
+  margin-bottom: 7px;
+  /* line-height: 1.25px; */
+  font-size: 16px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* background-color: burlywood; */
+}
+
+.movie_comments{
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+.comment_container{
+  width: 48%;
+}
+
+.review{
+  border: 2px solid black;
+  padding: 12px;
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+}
+.review::before{
+  border-color: transparent #000 transparent transparent; 
+  position: absolute;
+  border-width: 0 28px 28px 0;
+   bottom: -28px;
+   left : 39px;
+   border-style: solid ;
+   content: "";
+   display: block;
+   width: 0;
+   z-index: 0;
+}
+.review::after{
+  border-color: transparent #fff transparent transparent;
+  border-width: 0 26px 26px 0px;
+  bottom: -25px;
+  left: 40px;
+  z-index: 1;
+  position: absolute;
+  border-style: solid ;
+  content: "";
+  display: block;
+  width: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+  footer{
+    padding: 45px 0px;
+    text-align: center;
+  }
+  
+  .footer_link{
+    font-size: 12px;
+    padding: 16px 20px;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+  }
+  .copyright{
+    font-size: 12px;
+    padding-top: 10px;
+    color: black;
+  } 
+
+  /* comment */
+.comment_writter_detail{
+     position: relative;
+     left: 75px;
+     top: 7px;
+}
+.reviewer_img{
+  height: 28px;
+  width: 28px;
+  margin-right:10px ;
+  
+  /* background-color: blue; */
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.reviewer_name{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+.comment_date{
+  display: block;
+  font-size: 12px;
+  padding-left: 37px;
+  margin-bottom: 10px;
+}
+
+
+  
+  

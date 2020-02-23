@@ -88,16 +88,16 @@ function editTheMovie(req, res) {
 
 // render detail view page  
 function renderViewMovie(req, res) {
-  let movieId = req.params.id;
-  Movie.findById(movieId).populate("comments").exec((err, movie) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.render("viewMovie", {
-      movie,
-      userDetail: req.userDetail
-    });
-  })
+  // let movieId = req.params.id;
+  // Movie.findById(movieId).populate("comments").exec((err, movie) => {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+    res.render("viewMovie")//, {
+  //     movie,
+  //     userDetail: req.userDetail
+  //   });
+  // })
 }
 
 

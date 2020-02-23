@@ -49,7 +49,7 @@ app.use(session({
   saveUninitialized: true,
   // cookie: { secure : true},
   store: new Mongostore({ mongooseConnection : mongoose.connection })
-}));
+})); 
 
 app.use(auth.storeSessionData); 
 

@@ -40,7 +40,8 @@ router.get('/movie/:id/edit', auth.checkLoginUser ,movieController.renderEditFor
 //database implements  => basic crud implemantation
 router.post("/movie/add", upload.single("imgSrc"), auth.checkLoginUser, movieController.addIntoTheDatabase);
 router.post("/movie/:id/edit", upload.single("imgSrc"), auth.checkLoginUser ,movieController.editTheMovie);
-router.get("/movie/:id/", movieController.renderViewMovie);
+router.get("/movie/view", movieController.renderViewMovie);
+// router.get("/movie/:id/", movieController.renderViewMovie);
 
 router.get("/movie/:id/delete", auth.checkLoginUser ,movieController.deleteFromTheDatabase);
 

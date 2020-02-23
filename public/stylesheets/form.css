@@ -1,0 +1,285 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* general class */
+html{
+  font-family: Verdana, Arial, sans-serif, sans-serif;
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+*,
+*::after,
+*::before{
+  box-sizing: border-box;
+}
+/* header */
+.header_container{
+  height: 60px;
+  width: 100%;
+  background-color: rgb(40, 113, 177);;
+}
+.header{
+ width: 1277px;
+ margin: 0 auto;
+ height: 60px;
+ padding: 0px 80px 0px 80px;
+ /* background-color: yellow; */
+}
+
+.logo{
+display: flex;
+align-items: center;
+font-size: 28px;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 600;
+color: aliceblue;
+/* height: 110px; */
+width: 60px;
+margin-right: 24px;
+}
+
+.search-box-container{  
+display: flex;
+align-items: center;
+text-align: center;
+width: 350px;
+height: 60px;
+}
+
+.search-box{
+width: 100%;
+height: 40px;
+padding: 0px 16px 0px 16px;
+display: flex;
+align-items: center;
+vertical-align: baseline;
+background-color: rgb(22, 75, 122);
+border-radius: 20px;
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+-ms-border-radius: 20px;
+-o-border-radius: 20px;
+}
+.search-input{
+line-height: 30px;
+color: white;
+border: none;
+outline: none;
+background: transparent;
+width: 290px;
+height: 30px;
+padding: 1px 0px 2px 0px;
+font-size: 14px;
+padding-left: 10px ;
+}
+input::placeholder{
+color: white;
+/* padding-left: 14px; */
+text-transform: capitalize;
+font-weight: 300;
+}
+svg{
+height: 18px;
+width: 18px;
+color: white;
+}
+path {
+stroke: white;
+}
+.nav_container{
+ display: flex;
+ align-items: center;
+ width: 450.35px;
+ margin-left: 356px ;
+ justify-content: space-between;
+}
+
+.nav_link{
+padding: 6px 0px;
+color: white;
+text-transform: capitalize;
+letter-spacing: 0.5px;
+outline: none;
+font-size: 15px;
+border: none;
+text-decoration: none;
+}
+.underline{
+border-bottom: 2px solid white;
+}
+
+/* container*/
+.outer_form_container{
+  position: relative;
+   width: 800px;
+   height: 900px;
+   background-color: #f8fafc;
+   margin: 0 auto;
+   margin-top: 20px;
+}
+.form_header{
+  width: 100%;
+  height: 120px;
+  background-color: #1b9efc;
+  position: absolute;
+  z-index: 1;
+}
+.inner_form_container{
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%);
+  width: 80%;
+  background-color: white;
+  z-index: 2;
+  padding: 0  20px;
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+
+ -webkit-box-shadow: -1px 2px 10px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 2px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: -1px 2px 10px 1px rgba(0,0,0,0.75);
+
+}
+
+.addMovie_form_heading{
+  font-family:  sans-serif, sans-serif;
+  text-align: center;
+  color: rgb(66, 66, 66);
+  padding-top: 20px;
+  font-size: 21px;
+  font-weight: bold;
+  padding-bottom: 14px;
+}
+
+.form_section_subheading{
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 4px 0 15px 0px;
+}
+h5{
+  font-size: 15px;
+  text-transform: capitalize;
+  padding-bottom: 7px ;
+  font-weight: 500;
+}
+textarea,
+input{
+  display: block;
+  width: 280px;
+  height: 36px;
+  border: none;
+  padding-left: 10px;
+  border: 1px solid steelblue;
+  border-radius: 4px;
+  margin: 0px  0px 10px 0;
+  font-size: 16px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+input::placeholder{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.extend_input{
+   width: 100%;
+}
+textarea{
+  width: 100%;
+  height: 150px;
+}
+textarea::placeholder{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.submit{
+  width: 20%;
+  height: 30px;
+  font-size: 15px;
+  background-color: white;
+  margin: 10px 0px 10px 0px;
+  cursor: pointer;
+}
+.submit_container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* footer */
+
+footer{
+  margin-top: 40px;
+  padding: 45px 0px;
+  text-align: center;
+}
+
+.footer_link{
+  font-size: 12px;
+  padding: 16px 20px;
+  text-transform: capitalize;
+  text-decoration: none;
+  color: black;
+}
+.copyright{
+  font-size: 12px;
+  padding-top: 10px;
+  color: black;
+}
