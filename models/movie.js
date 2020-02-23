@@ -11,6 +11,18 @@
    imgSrc:{
      type:String
    },
+   rating:{
+     type:String
+   },
+   tags:[String],
+   directedBy:[String],
+   writtenBy:[String],
+   runtime:{
+     type: String
+   },
+   releaseDate:{
+     type:String
+   },
    comments :[{
      type: Schema.Types.ObjectId,
      ref: "Comment"

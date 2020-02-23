@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var commentSchema = Schema({
+  userId:{
+    type : Schema.Types.ObjectId,
+    ref : "User"
+  },
   comment: {
     type: String
   },
