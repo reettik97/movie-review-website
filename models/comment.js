@@ -17,7 +17,7 @@ var commentSchema = Schema({
     ref: "Movie",
     require: true
   }
-})
+},{timestamps: true});
 
 var Comment = mongoose.model("Comment", commentSchema);
 

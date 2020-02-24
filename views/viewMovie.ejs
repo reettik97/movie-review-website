@@ -46,7 +46,9 @@
     </div>
 
   </header>
- 
+
+  
+
   <main class="main_container">
     <div class="movie_poster_container">
       <img class="movie_poster" src="<%= movie.imgSrc %>" alt="">
@@ -110,30 +112,19 @@
       <div class="movie_comments">
     
    <% movie.comments.forEach(review =>{  %>
-
     <div class="comment_container">     
       <div class="review"><%= review.comment%></div>
       <div class="comment_writter_detail">
         <span class="reviewer_name"><img class="reviewer_img" src="/images/icons/personIcon.png" alt=""><%=review.username%></span>
-        <span class="comment_date">10/10/2019</span>
+        <span class="comment_date"><%= (review.updatedAt + "").slice(4 , 24)%></span>
+        <span><a class="comment_delete_button" href="/movie/<%= review.id %>/commentDelete">&#10005</a></span>
       </div>
-    </div>
-
-            
+    </div>         
    <% }) %>
-
-       
-
-
-
-
-
-
 
       </div>
     </div>
   </main>
-
 
   <footer>
     <nav class="footer_nav">

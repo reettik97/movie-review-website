@@ -42,5 +42,6 @@ router.get("/movie/:id/delete", auth.checkLoginUser, movieController.deleteFromT
 
 //comment operation
 router.post("/movie/:id/comment", auth.checkLoginUser, movieController.addComment)
+router.get("/movie/:id/commentDelete" , auth.checkLoginUser , movieController.deleteComment)
 
 module.exports = router;

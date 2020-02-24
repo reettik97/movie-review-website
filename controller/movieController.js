@@ -160,6 +160,43 @@ function addComment(req, res) {
   })
 }
 
+function deleteComment(req , res){
+  let commentId = req.params.id;
+  Comment.findById(commentId , (err , comment)=>{
+    if(err){return console.log(err)} 
+    console.log(comment);
+
+    Movie.updateOne({id:comment.movieId} , {$pull: {comments :[commentId]}} , (err)=>{
+      if(err){ return console.log(err)}
+      console.log( "movie model se delete kar diya")
+      Comment.findByIdAndRemove(commentId , (err , data)=>{
+        if(err){return console.log(err)}
+        console.log(data);
+        console.log("commnet se v delete kar diya")
+        res.redirect("/movie/"+comment.movieId);
+      })
+    })
+    
+    // Movie.find
+    // Movie.findById(comment.movieId , (err , movie)=>{
+    //   if(err){console.log(err)}
+    //   console.log("movie detail" , movie);
+    // })
+    //  delete from the movie schema
+    //  delete from the comment schema
+  })
+}
+
+// {
+//   _id: 5e53f97c4f8e3c565ad2644e,
+//   comment: ';wsjbcwbjcbhwyugucwvcjhwvcywvcvwygcvwhvc',
+//   movieId: 5e535c007d8b59200cbe072f,
+//   userId: 5e52586d8ea82659655134d5,
+//   username: 'jay',
+//   __v: 0
+// }
+
+
 module.exports = {
   viewIndex,
   renderAddForm,
@@ -168,5 +205,6 @@ module.exports = {
   renderViewMovie,
   deleteFromTheDatabase,
   addComment,
-  editTheMovie
+  editTheMovie,
+  deleteComment
 }

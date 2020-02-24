@@ -337,6 +337,14 @@ path {
   padding-left: 37px;
   margin-bottom: 10px;
 }
+.comment_delete_button{
+  position: absolute;
+  top: -36px;
+  right: 80px;
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+}
 
 
   

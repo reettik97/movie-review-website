@@ -1,2 +1,4 @@
 
- if edit from not provide any imagge than stay the default image 
+ 1. delete the comment 
+ 2. movie detail contain the user name
+ 2. who create the only who can delete the movie
