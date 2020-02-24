@@ -2,8 +2,6 @@ var mongoose = require('mongoose');
 var path = require("path");
 var fs = require("fs");
 
-
-
 //require the database models
 var Movie = require("../models/movie");
 var Comment = require("../models/comment");
@@ -16,18 +14,14 @@ function viewIndex(req, res, next) {
     }
     res.render('index', {
       movies,
-      userDetail : req.userDetail
     });
   })
 }
 
 function renderAddForm(req, res, next) {
   console.log(req.userDetail);
-  res.render("addMovie", 
-  {  userDetail: req.userDetail }
-  );
+  res.render("addMovie");
 }
-
 
 function renderEditForm(req, res, next) {
   // send the data to the edit page
@@ -43,9 +37,12 @@ function renderEditForm(req, res, next) {
   })
 }
 
-
 // database 
 function addIntoTheDatabase(req, res, next) {
+  // let tags = req.body.tags;
+  req.body.tags = req.body.tags.split(",");
+  req.body.directedBy = req.body.directedBy.split(",");
+  req.body.writtenBy = req.body.writtenBy.split(",")
   let movieObj = req.body;
   let imgPath = "/images/uploads/" + req.file.originalname;
   movieObj.imgSrc = imgPath;
@@ -56,50 +53,55 @@ function addIntoTheDatabase(req, res, next) {
     console.log(data);
     res.redirect("/");
   })
-
 }
 
 // edit the movie into the database
 function editTheMovie(req, res) {
   let movieId = req.params.id;
-  let imgPath = "/images/uploads/" + req.file.originalname; //add the img path
-  req.body.imgSrc = imgPath;
   Movie.findById(movieId, (err, movie) => {
     if (err) {
       return console.log(err);
     }
-    let deleteImagePath = path.join(__dirname, "../public" + movie.imgSrc);
-    fs.unlink(deleteImagePath, (err) => {
-      if (err) {
-        return console.log(err);
-      }
-      console.log('old movie poster deleted');
+    if (req.file) {
+      let imgPath = "/images/uploads/" + req.file.originalname;
+      req.body.imgSrc = imgPath;
+
+      let deleteImagePath = path.join(__dirname, "../public" + movie.imgSrc);
+      fs.unlink(deleteImagePath, (err) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log('old movie poster deleted');
+        Movie.findByIdAndUpdate(movieId, req.body, (err, editedMovie) => {
+          if (err) {
+            return console.log(err);
+          }
+          res.redirect('/');
+        })
+      })
+    } else {
       Movie.findByIdAndUpdate(movieId, req.body, (err, editedMovie) => {
         if (err) {
           return console.log(err);
         }
         res.redirect('/');
       })
-    })
+    }
   })
 }
 
-
-
 // render detail view page  
-function renderViewMovie(req, res) {
-  // let movieId = req.params.id;
-  // Movie.findById(movieId).populate("comments").exec((err, movie) => {
-  //   if (err) {
-  //     return console.log(err);
-  //   }
-    res.render("viewMovie")//, {
-  //     movie,
-  //     userDetail: req.userDetail
-  //   });
-  // })
+function renderViewMovie(req, res, next) {
+  let movieId = req.params.id;
+  Movie.findById(movieId).populate("comments").exec((err, movie) => {
+    if (err) {
+      return console.log(err);
+    }
+    res.render("viewMovie", {
+      movie
+    });
+  })
 }
-
 
 // delete the movie from the database
 function deleteFromTheDatabase(req, res) {
@@ -131,13 +133,13 @@ function deleteFromTheDatabase(req, res) {
   return;
 }
 
-
 // add comments in the movie
 function addComment(req, res) {
   let movieId = req.params.id;
   //  let commentObj = req.body;
   req.body.movieId = movieId;
-  console.log("comment section a vetor a achi", req.body);
+  req.body.userId = req.userDetail.id;
+  req.body.username = req.userDetail.name;
   Comment.create(req.body, (err, createdComment) => {
     if (err) {
       return console.log(err);
@@ -157,7 +159,6 @@ function addComment(req, res) {
     )
   })
 }
-
 
 module.exports = {
   viewIndex,

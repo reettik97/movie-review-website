@@ -184,6 +184,7 @@ path {
 .movie_link{
   text-decoration: none;
   cursor: pointer;
+  margin-right: 8px;
 }
 .section_heading{
   text-overflow: ellipsis;
@@ -209,7 +210,8 @@ path {
 .col-1-5{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  /* justify-content: space-around; */
 
 }
 

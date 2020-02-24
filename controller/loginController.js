@@ -5,8 +5,6 @@ function renderLoginForm(req, res) {
   res.render("login-reg");
 }
 
-
-
 // add user into the database 
 function addUserIntoTheDatabase(req, res) {
   let userObj = req.body;
@@ -24,12 +22,11 @@ function addUserIntoTheDatabase(req, res) {
         if (err) {
           return console.log(err);
         }
-        res.send(data);
+        res.redirect("/");
       })
     })
   })
 }
-
 
 // check the validation email and password
 function checkLoginValidation(req, res) {
@@ -40,7 +37,7 @@ function checkLoginValidation(req, res) {
       return console.log(err);
     }
     // is user is true that mean the email is currect
-    if(!user){
+    if (!user) {
       res.send("wrong email address")
     }
     //check the password is currect or not
@@ -58,18 +55,12 @@ function checkLoginValidation(req, res) {
   })
 }
 
-function logout(req , res , next){
-  if(req.session && req.session.userId){
-     req.session.destroy()
+function logout(req, res, next) {
+  if (req.session && req.session.userId) {
+    req.session.destroy()
   }
-     res.redirect('/');
+  res.redirect('/');
 }
-
-// exports.logout = (req, res, next) => {
-
-// }
-
-
 
 module.exports = {
   renderLoginForm,

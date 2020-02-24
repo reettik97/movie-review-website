@@ -7,7 +7,6 @@ function storeSessionData(req, res, next) {
       if (err) {
         return console.log(err);
       }
-      console.log(userDetail);
       req.userDetail = userDetail;
       res.locals.userDetail = userDetail;
       next();
@@ -19,7 +18,6 @@ function storeSessionData(req, res, next) {
   }
 }
 
-
 function checkLoginUser(req, res, next) {
   if (req.session && req.session.userId) {
     next();
@@ -27,7 +25,6 @@ function checkLoginUser(req, res, next) {
     res.redirect("/users/login");
   }
 }
-
 
 module.exports = {
   storeSessionData,

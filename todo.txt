@@ -1,21 +1,2 @@
-pages =>{
-  1. addMovie
-  2. editMovie 
-  3. index
-  4. viewMovie
-  5. error
-}
 
-only login user{
- 1. editMovie
- 2. deleteMovie
- 3. write comments
-}
-
-without login user{
-  1.  (index page)
-  2.  detail movie page  
-}
-
-task :
-login and registration redirect 
+ if edit from not provide any imagge than stay the default image 
