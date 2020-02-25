@@ -19,7 +19,6 @@ function viewIndex(req, res, next) {
 }
 
 function renderAddForm(req, res, next) {
-  console.log(req.userDetail);
   res.render("addMovie");
 }
 
@@ -39,10 +38,10 @@ function renderEditForm(req, res, next) {
 
 // database 
 function addIntoTheDatabase(req, res, next) {
-  // let tags = req.body.tags;
+  req.body.createdBy = req.userDetail.id;
   req.body.tags = req.body.tags.split(",");
   req.body.directedBy = req.body.directedBy.split(",");
-  req.body.writtenBy = req.body.writtenBy.split(",")
+  req.body.writtenBy = req.body.writtenBy.split(",");
   let movieObj = req.body;
   let imgPath = "/images/uploads/" + req.file.originalname;
   movieObj.imgSrc = imgPath;
@@ -50,7 +49,6 @@ function addIntoTheDatabase(req, res, next) {
     if (err) {
       return console.log(err)
     }
-    console.log(data);
     res.redirect("/");
   })
 }
@@ -71,7 +69,6 @@ function editTheMovie(req, res) {
         if (err) {
           return console.log(err);
         }
-        console.log('old movie poster deleted');
         Movie.findByIdAndUpdate(movieId, req.body, (err, editedMovie) => {
           if (err) {
             return console.log(err);
@@ -90,10 +87,9 @@ function editTheMovie(req, res) {
   })
 }
 
-// render detail view page  
 function renderViewMovie(req, res, next) {
   let movieId = req.params.id;
-  Movie.findById(movieId).populate("comments").exec((err, movie) => {
+  Movie.findById(movieId).populate("comments").populate("createdBy").exec((err, movie) => {
     if (err) {
       return console.log(err);
     }
@@ -102,6 +98,7 @@ function renderViewMovie(req, res, next) {
     });
   })
 }
+
 
 // delete the movie from the database
 function deleteFromTheDatabase(req, res) {
@@ -117,7 +114,6 @@ function deleteFromTheDatabase(req, res) {
       if (err) {
         return console.log(err);
       }
-      console.log("commnet deleted successfully");
     })
     //delele the public/image/imgName into the folder 
     let deleteImagePath = path.join(__dirname, "../public" + movie.imgSrc);
@@ -127,7 +123,6 @@ function deleteFromTheDatabase(req, res) {
       }
       console.log('movie deleted succesfully');
     })
-    // console.log(movie);
     res.redirect("/");
   })
   return;
@@ -136,7 +131,6 @@ function deleteFromTheDatabase(req, res) {
 // add comments in the movie
 function addComment(req, res) {
   let movieId = req.params.id;
-  //  let commentObj = req.body;
   req.body.movieId = movieId;
   req.body.userId = req.userDetail.id;
   req.body.username = req.userDetail.name;
@@ -160,42 +154,33 @@ function addComment(req, res) {
   })
 }
 
-function deleteComment(req , res){
+function deleteComment(req, res) {
   let commentId = req.params.id;
-  Comment.findById(commentId , (err , comment)=>{
-    if(err){return console.log(err)} 
-    console.log(comment);
-
-    Movie.updateOne({id:comment.movieId} , {$pull: {comments :[commentId]}} , (err)=>{
-      if(err){ return console.log(err)}
-      console.log( "movie model se delete kar diya")
-      Comment.findByIdAndRemove(commentId , (err , data)=>{
-        if(err){return console.log(err)}
-        console.log(data);
-        console.log("commnet se v delete kar diya")
-        res.redirect("/movie/"+comment.movieId);
+  Comment.findById(commentId, (err, comment) => {
+    if (err) {
+      return console.log(err)
+    }
+    // remove comment from the Movie collection
+    Movie.updateOne({
+      id: comment.movieId
+    }, {
+      $pull: {
+        comments: [commentId]
+      }
+    }, (err) => {
+      if (err) {
+        return console.log(err)
+      }
+      // delete the particular comment
+      Comment.findByIdAndRemove(commentId, (err, data) => {
+        if (err) {
+          return console.log(err)
+        }
+        res.redirect("/movie/" + comment.movieId);
       })
     })
-    
-    // Movie.find
-    // Movie.findById(comment.movieId , (err , movie)=>{
-    //   if(err){console.log(err)}
-    //   console.log("movie detail" , movie);
-    // })
-    //  delete from the movie schema
-    //  delete from the comment schema
   })
 }
-
-// {
-//   _id: 5e53f97c4f8e3c565ad2644e,
-//   comment: ';wsjbcwbjcbhwyugucwvcjhwvcywvcvwygcvwhvc',
-//   movieId: 5e535c007d8b59200cbe072f,
-//   userId: 5e52586d8ea82659655134d5,
-//   username: 'jay',
-//   __v: 0
-// }
-
 
 module.exports = {
   viewIndex,

@@ -46,16 +46,18 @@
     </div>
 
   </header>
-
   
-
   <main class="main_container">
     <div class="movie_poster_container">
       <img class="movie_poster" src="<%= movie.imgSrc %>" alt="">
        
-      <!-- chenge the style of that two button -->
+
+      <!-- change the style of that two button -->
+     <% if(userDetail && movie.createdBy.id == userDetail.id){  %>
+
        <a href="/movie/<%=movie.id%>/edit">edit</a>
        <a href="/movie/<%=movie.id%>/delete">delete</a>
+     <% } %>
 
 
     </div>
@@ -99,6 +101,10 @@
             <div class="key_heading">Runtime :</div>
             <div class="key_info"> <%= movie.runtime%></div>
           </li>
+          <li class="flex">
+            <div class="key_heading">Created By :</div>
+            <div class="key_info"> <%= movie.createdBy.name%></div>
+          </li>
         </ul>
       </div>
 
@@ -117,7 +123,12 @@
       <div class="comment_writter_detail">
         <span class="reviewer_name"><img class="reviewer_img" src="/images/icons/personIcon.png" alt=""><%=review.username%></span>
         <span class="comment_date"><%= (review.updatedAt + "").slice(4 , 24)%></span>
+         
+         
+      <% if(userDetail && userDetail.id == review.userId){ %>  
         <span><a class="comment_delete_button" href="/movie/<%= review.id %>/commentDelete">&#10005</a></span>
+        <% } %>
+        
       </div>
     </div>         
    <% }) %>
